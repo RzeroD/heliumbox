@@ -6,10 +6,10 @@ include ("pass.php");
 <b>
 <?php
   if(isset($_POST["vote"]) && ($_POST["vote"] == "YES" || $_POST["vote"] == "NO")){
-    $configPath = "/home/stakebox/.navcoin4/navcoin.conf";
+    $configPath = "/home/helium/.helium/helium.conf";
 
     if (!file_exists($configPath)) {
-      print_r("Something went wrong, navcoin.conf does not exist<br><br>");
+      print_r("Something went wrong, helium.conf does not exist<br><br>");
     } else {
 
       $voteNumber = ($_POST["vote"] == "YES" ? 1 : 0);

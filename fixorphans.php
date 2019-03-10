@@ -1,13 +1,12 @@
 <?php
 include ("header.php");
 include ("pass.php");
-$walletDir = "/home/stakebox/wallets/".$currentWallet;
+$walletDir = "/home/helium/wallets/".$currentWallet;
 
 $status = $_POST["status"];
 
 if ($status == "zapwallettxes") {
-  exec("killall navcoind");
-  exec("/usr/local/bin/navcoind -datadir=/home/stakebox/.navcoin4 -zapwallettxes > /dev/null &");
+  exec("systemctl restart heliumd.service");
   print("<h2>Orphans are being fixed</h2>");
   print("<p>Be patient, it can take up to 15 minutes for your wallet to restart and repair.</p>");
 } else { ?>

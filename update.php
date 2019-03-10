@@ -16,7 +16,7 @@ $walletDir = "/home/stakebox/wallets/".$currentWallet;
             <?php
             $status = $_POST["status"];
             if ($status == "webui"){
-                echo exec("cd /home/stakebox/UI && /usr/bin/git pull 2>&1");
+                echo exec("cd /var/www/html && /usr/bin/git pull 2>&1");
                 echo "<br /><br />";
             }
             ?>
@@ -26,7 +26,7 @@ $walletDir = "/home/stakebox/wallets/".$currentWallet;
         <div class="col-lg-12">
           <b>NavCoin Core</b><br /><br />
            This device should automatically check for new versions of the NavCoin Core wallet and update from github. If you want to run the updater manually, please run the following in the navpi terminal window.
-           <br /><br /><pre>sudo /home/stakebox/UI/libs/updater.sh</pre>
+           <br /><br /><pre>sudo /var/www/html/libs/updater.sh</pre>
         </div>
     </div>
 </div>

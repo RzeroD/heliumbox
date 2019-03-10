@@ -7,10 +7,10 @@ $updateData = json_decode($updateFile, TRUE);
 if ($updateData) {
 	switch($updateData["code"]) {
 		case "UPDATE_INSTALLED":
-			echo "<br><p class='bg-success'><b>NOTICE: A new version of NavCoin has been installed. Click here to Apply the update and restart your device <a href='/applyupdate.php?updated=true' class='btn btn-default' style='margin:0;'>Apply Update</a></b></p>";
+			echo "<br><p class='bg-success'><b>NOTICE: A new version of Helium has been installed. Click here to Apply the update and restart your device <a href='/applyupdate.php?updated=true' class='btn btn-default' style='margin:0;'>Apply Update</a></b></p>";
 			break;
 		default:
-			echo "<br><p class='bg-danger'><b>NOTICE: Something went wrong trying to update the NavCoin daemon. Click here to dismiss this message and restart your device <a href='/applyupdate.php?updated=false' class='btn btn-default' style='margin:0;'>Dismiss Notice</a>.</b></p>";
+			echo "<br><p class='bg-danger'><b>NOTICE: Something went wrong trying to update the Helium daemon. Click here to dismiss this message and restart your device <a href='/applyupdate.php?updated=false' class='btn btn-default' style='margin:0;'>Dismiss Notice</a>.</b></p>";
 			echo ('<pre>');
 			print_r ($updateData);
 			echo ('</pre>');
@@ -42,14 +42,14 @@ if($primary != ""){
 	} else {
 
 		$address = $coin->getaddressesbyaccount("")[0];
-		
+
 		// Duplicated code from setPrimary, as we can't access the function ----------------
-		$primaryLocation = "/home/stakebox/UI/primary".$currentWallet."address.php";
+		$primaryLocation = "/var/www/html/primary".$currentWallet."address.php";
 		// Open the file and erase the contents if any
 		$fp = fopen($primaryLocation, "w");
 		// Write the data to the file
 		// CODE INJECTION WARNING!
-		fwrite($fp, "<?php\n\$primary='';\n?>");	  	
+		fwrite($fp, "<?php\n\$primary='';\n?>");
 		// Close the file
 		fclose($fp);
 		$showMainAddressChangedMessage = true;
@@ -61,7 +61,7 @@ else{
 }
 //-------------------------------------------------------------
 
-if ($currentWallet == NavCoin){
+if ($currentWallet == Helium){
 	$stakinginfo = $coin->getstakinginfo();
 	$stakereport = $coin->getstakereport();
 	$x = array_reverse($stakinginfo);
@@ -79,7 +79,7 @@ if ($currentWallet == NavCoin){
 	$fiatValue = number_format($fiatValue);
 ?>
 <div class="row">
-	<?php 
+	<?php
 		if ($showMainAddressChangedMessage == true)
 			echo "
 			<div class='col-lg-12'>
@@ -92,7 +92,7 @@ if ($currentWallet == NavCoin){
 					</small>
 				</div>
 			</div>";
- 	
+
 	?>
 
 	<div class="col-lg-6">
@@ -139,13 +139,13 @@ if ($currentWallet == NavCoin){
 	<div class="col-lg-7">
 	<p> Your main wallet address is: <input type="text" name="main_wallet_address" value="<?php print_r($address); ?>" onClick="this.setSelectionRange(0, this.value.length);" size="48" readonly />
 	<p>The network is currently on block <?php print_r($coin->getblockcount()); ?>.
-	<?php if ($currentWallet == NavCoin): ?>
-		<?php echo "<p><b>Stake report</b></p><p>Last 24h: {$stakereport['Last 24H']} NAV</p><p>Last 7d: {$stakereport['Last 7 Days']} NAV</p><p>Last 30d: {$stakereport['Last 30 Days']} NAV</p><p>Last 365d: {$stakereport['Last 365 Days']} NAV</p>" ?>
+	<?php if ($currentWallet == Helium): ?>
+		<?php echo "<p><b>Stake report</b></p><p>Last 24h: {$stakereport['Last 24H']} HLM</p><p>Last 7d: {$stakereport['Last 7 Days']} HLM</p><p>Last 30d: {$stakereport['Last 30 Days']} HLM</p><p>Last 365d: {$stakereport['Last 365 Days']} HLM</p>" ?>
 	<?php endif; ?>
 	<?php if ($currentWallet == Philosopherstone): ?>
 		<?php echo "<p>Your stake weight is {$x['stakeweight']}.</p>"?>
 	<?php endif; ?>
-        <?php if ($currentWallet == NavCoin): ?>
+        <?php if ($currentWallet == Helium): ?>
 		<?php echo "<p>Your estimated time to earn rewards is "?>
 		<?php if ($hours < 1 && $days < 1)echo "$minutes minutes.</p>"?>
 		<?php if ($hours == 1 && $days < 1)echo "$hours hour $minutes minutes.</p>"?>
@@ -162,8 +162,8 @@ if ($currentWallet == NavCoin){
 		<!--<a href='update' class='btn btn-default' role='button'>A new update to the WebUI is available, click to get it.</a>-->
 	<?php endif; ?>
 	</div>
-     <?php if(file_exists("/home/stakebox/UI/".$currentWallet."notes.php")){
-       include('/home/stakebox/UI/'.$currentWallet.'notes.php');
+     <?php if(file_exists("/var/www/html/".$currentWallet."notes.php")){
+       include('/var/www/html/'.$currentWallet.'notes.php');
 	echo "<div class='col-lg-5'>
 	  <div class='form-group'>
 	  <form action='notes' method='POST'><input type='hidden'>

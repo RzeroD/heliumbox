@@ -2,7 +2,7 @@
 include ("header.php");
 include ("pass.php");
 $txid = $_POST['txid'];
-$commentLocation = "/home/stakebox/UI/".$currentWallet.$txid."comment.php";
+$commentLocation = "/var/www/html/".$currentWallet.$txid."comment.php";
 
 function addComment(){
 

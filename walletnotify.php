@@ -1,8 +1,8 @@
 <?php
 
-	require("/home/stakebox/UI/config.php");
-	require("jsonRPCClient.php");	
-	include("/home/stakebox/UI/email.php");
+	require("/var/www/html/config.php");
+	require("jsonRPCClient.php");
+	include("/var/www/html/email.php");
 	include("diskusage.php");
 
 	session_start();
@@ -19,7 +19,7 @@
 
 	$transactionHash = $_GET["transactionHash"];
 
-	$transactionFile = "/home/stakebox/UI/latest".$currentWallet."Transaction.php";
+	$transactionFile = "/var/www/html/latest".$currentWallet."Transaction.php";
 
 	include("$transactionFile");
 
@@ -28,12 +28,12 @@
 	$trxinfo = $coin->gettransaction($transactionHash);
 
 	$date = date('D M j Y g:i a', $trxinfo['time']);
-	
+
 	if($trxinfo["details"][0]["category"]=="send"){
 		$new = "You have sent ".abs($trxinfo["details"][0]["amount"])." ".$ticker." to ".$trxinfo["details"][0]["address"]."."
 		."\nAs of ".$date." your current balance is ".$walletinfo["balance"];
 	}
-	
+
 	if($trxinfo["details"][0]["category"]=="receive"){
 		$new = "You have received ".$trxinfo["details"][0]["amount"]." ".$ticker." with ".$trxinfo["details"][0]["address"]."."
 		."\nAs of ".$date." your current balance is ".$walletinfo["balance"];
@@ -50,7 +50,7 @@
 	}
 
 	if((!file_exists("$transactionFile"))||($transactionHash != $oldHash)){
-		$newHash = "<?php "."$"."oldHash = ".'"'."$transactionHash".'";'." ?>"; 
+		$newHash = "<?php "."$"."oldHash = ".'"'."$transactionHash".'";'." ?>";
 		$fp = fopen("$transactionFile","w");
 		fwrite($fp,$newHash);
 	}elseif($dp>70){

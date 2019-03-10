@@ -4,13 +4,13 @@ include ("pass.php");
 ?>
 
 <b>
-<?php 
+<?php
 	$servers = $coin->listanonservers();
-        print_r('<b>NavTech servers:</b><br><br>');
+        print_r('<b>HeliumTech servers:</b><br><br>');
 	foreach ($servers as $server){
                 print_r("$server <u><a href=\"removeanonserver.php?server={$server}\">Remove</a></u><br>");
 	}
 ?>
-</b> 
+</b>
 </div>
 <?php include ("footer.php");?>

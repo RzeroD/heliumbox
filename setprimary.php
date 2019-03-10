@@ -1,7 +1,7 @@
-<?php 
+<?php
 include ("header.php");
 include ("pass.php");
-$primaryLocation = "/home/stakebox/UI/primary".$currentWallet."address.php";
+$primaryLocation = "/var/www/html/primary".$currentWallet."address.php";
 
 function changePrimary(){
 
@@ -11,16 +11,16 @@ function changePrimary(){
 		$file = fopen("$primaryLocation","w");
 		fwrite($file,"");
 		fclose($file);
-	}   
-	if (is_readable($primaryLocation) == FALSE) 
-		die ("The primary address file must be writable.") ; 
+	}
+	if (is_readable($primaryLocation) == FALSE)
+		die ("The primary address file must be writable.") ;
 
 	// Open the file and erase the contents if any
 	$fp = fopen($primaryLocation, "w");
 
 	// Write the data to the file
 	// CODE INJECTION WARNING!
-  	fwrite($fp, "<?php\n\$primary='$newPrimary';\n?>");	  	
+  	fwrite($fp, "<?php\n\$primary='$newPrimary';\n?>");
   	// Close the file
   	fclose($fp);
 

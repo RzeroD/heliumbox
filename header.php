@@ -6,8 +6,8 @@
 	require("libs/config.php");
 	require("jsonRPCClient.php");
 	require("printarray.php");
-	require("/home/stakebox/UI/currency.php");
-#	include("/home/stakebox/UI/email.php");
+	require("/var/www/html/currency.php");
+#	include("/var/www/html/email.php");
 	include("diskusage.php");
 
 	//hard set currency to usd
@@ -39,7 +39,7 @@
 
 	// fetch price in BTC price of current coin
 	$curl = curl_init();
-	curl_setopt($curl, CURLOPT_URL, "https://api.coinmarketcap.com/v1/ticker/nav-coin/");
+	curl_setopt($curl, CURLOPT_URL, "https://api.coinmarketcap.com/v1/ticker/helium/");
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	$rawData = curl_exec($curl);
 	$data = json_decode($rawData);
@@ -67,8 +67,8 @@
 	$data1 = json_decode($rawData1);
 	$fiatBTC = $data1->price;
 
-	$lastRunLog = '/home/stakebox/UI/lastrun';
-	$versionLocation = '/home/stakebox/UI/version.php';
+	$lastRunLog = '/var/www/html/lastrun';
+	$versionLocation = '/var/www/html/version.php';
 
 	if(!file_exists("$lastRunLog")){
 		$file = fopen("$lastRunLog","w");
@@ -104,7 +104,7 @@
 	    }
 	}
 	*/
-$lockStateLocation = "/home/stakebox/UI/".$currentWallet."lockstate.php";
+$lockStateLocation = "/var/www/html/".$currentWallet."lockstate.php";
 
 function changeLockState(){
 
@@ -127,8 +127,8 @@ function changeLockState(){
   	fclose($fp);
 }
 
-include("/home/stakebox/UI/version.php");
-include("/home/stakebox/UI/primary".$currentWallet."address.php");
+include("/var/www/html/version.php");
+include("/var/www/html/primary".$currentWallet."address.php");
 
 try {
 	$coinGetInfo = $coin->getinfo();
@@ -164,7 +164,7 @@ if($coinGetInfo) {
 
 }
 
-include("/home/stakebox/UI/".$currentWallet."lockstate.php");
+include("/var/www/html/".$currentWallet."lockstate.php");
 
 ?>
 
@@ -246,7 +246,7 @@ include("/home/stakebox/UI/".$currentWallet."lockstate.php");
 		$coininfo = $coin->getinfo();
 	} catch(exception $e) {
 		echo "<!-- $e -->";
-		echo "<br><p class='bg-danger'><b>Error: Your wallet server is not running. Please restart your StakeBox via the power option in the server section on the control page. If you have just restarted it, or powered it on, please allow it up to several minutes before attempting to restart it again.</b></p>";
+		echo "<br><p class='bg-danger'><b>Error: Your wallet server is not running. Please restart your HeliumNode via the power option in the server section on the control page. If you have just restarted it, or powered it on, please allow it up to several minutes before attempting to restart it again.</b></p>";
 	}
 	if($dp>97){
 		echo "<br><p class='bg-danger'><b>NOTICE: Your disk is nearing capacity, it is currently ".$dp."% full, with ".$df." free space remaining!</b></p>";
