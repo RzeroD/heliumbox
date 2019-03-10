@@ -8,8 +8,8 @@ $command = $input[0];
 switch ($command) {
   case "createproposal":
   try {
-      list($address, $nav, $time, $description) = explode(' ',$input[1], 4);
-      $nav = (int)$nav;
+      list($address, $hlm, $time, $description) = explode(' ',$input[1], 4);
+      $hlm = (int)$hlm;
       $time = (int)$time;
 
       $firstCharacter = substr($description, 0,1);
@@ -22,16 +22,16 @@ switch ($command) {
         $description = substr($description, 0, -1);
       }
 
-      echo("<p><b>$command $address $nav $time $description</b></p>");
-      printarray($coin->$command($address, $nav, $time, $description));
+      echo("<p><b>$command $address $hlm $time $description</b></p>");
+      printarray($coin->$command($address, $hlm, $time, $description));
     } catch(Exception $e) {
       echo "<p class='bg-danger'><b>{$e}Error: Something went wrong... Double check for spelling error and correct syntax. </b></p>";
     }
     break;
   case "createpaymentrequest":
     try {
-      list($hash, $nav, $unique_id) = explode(' ',$input[1], 3);
-      $nav = (int)$nav;
+      list($hash, $hlm, $unique_id) = explode(' ',$input[1], 3);
+      $hlm = (int)$hlm;
 
       $firstCharacter = substr($unique_id, 0,1);
       $lastCharacter = substr($unique_id, -1);
@@ -43,8 +43,8 @@ switch ($command) {
         $unique_id = substr($unique_id, 0, -1);
       }
 
-      echo("<p><b>$command $hash $nav $unique_id</b></p>");
-      printarray($coin->$command($hash, $nav, $unique_id));
+      echo("<p><b>$command $hash $hlm $unique_id</b></p>");
+      printarray($coin->$command($hash, $hlm, $unique_id));
     } catch(Exception $e) {
       echo "<p class='bg-danger'><b>{$e}Error: Something went wrong... Double check for spelling error and correct syntax. </b></p>";
     }

@@ -37,13 +37,13 @@ include ("pass.php");
 </div><!-- /.well -->
 
 <div class="well">
-   <b><a name="navtech">NAVTech</a></b>
+   <b><a name="helium">HeliumTech</a></b>
       <div style="padding: 5px 15px 5px;">
          <div class="row">
             <div class="col-lg-2">
                <form action="listanonservers" method="POST"><input type="hidden">
                   <div class="input-group">
-                     <button class='btn btn-default' type="submit" value="listanonservers">Manage NAVTech Servers</button>
+                     <button class='btn btn-default' type="submit" value="listanonservers">Manage HeliumTech Servers</button>
                   </div><!-- /input-group -->
                </form>
             </div><!-- /.col-lg-2 -->
@@ -51,7 +51,7 @@ include ("pass.php");
                <form action="addanonserver" method="POST"><input type="hidden">
                   <div class="input-group">
                      <span class="input-group-btn">
-                        <button class='btn btn-default' type="submit" value="addanonserver">Add NAVTech Server</button>
+                        <button class='btn btn-default' type="submit" value="addanonserver">Add HeliumTech Server</button>
                      </span>
                         <input class="form-control" type="text" name="server" placeholder="Enter Server (address:port)" >
                   </div><!-- /input-group -->
